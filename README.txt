@@ -59,14 +59,16 @@ MYSQL_PRIVATE_URL = "mysql://root:dEb2baFh6Ab2Dde2cEEGCEb3AG4-3-cD@mysql.railway
 
 How to do a git push within vscode
 ------------------------------------------------------
-#first create a repository in github
 #within the terminal, type the following commands
 git init
 git add .
-git commit -am "comment goes here"
-git remote add origin url_to_repository_goes_here
-git push origin master 
-#master is the main branch
+git commit -m "Initial commit"
+#If you haven't already, create a new repository on GitHub 
+#(or any other Git hosting service). 
+#Do not initialize it with a README or any other files.
+git remote add origin https://github.com/Prince-hue/test-deploy.git
+git push -u origin main 
+
 #to change branches
 git checkout -b name_of_branch
 #check to see if any changes have been made
@@ -75,6 +77,24 @@ git status
 git commit -am "new_comment"
 #git status will tell you no changes
 git push origin name_of_branch
+
+
+How to solve refusing to merge error
+--------------------------------------------------------
+#The "refusing to merge unrelated histories" error
+#occurs when Git detects that the histories of the branches 
+#you're trying to merge (or pull) have diverged and are 
+#not directly related. This can happen when you have 
+#initialized a Git repository locally, and then you create a 
+#new repository on GitHub (or another remote repository) with its 
+#own set of commits.
+git pull origin main --allow-unrelated-histories
+#Add and commit any changes resulting from the merge
+git add .
+git commit -m "Merge remote main into local main"
+#Push the changes to the remote repository
+git push origin main
+
 
 How to deploy into vercel
 --------------------------------------------------
