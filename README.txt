@@ -100,8 +100,29 @@ How to deploy into vercel
 --------------------------------------------------
 #visit vecel main site and log in
 https://vercel.com
-#import guthub repository 
-#in configure project at environment variables, make modifications
-#with the url of the database
-#don't add the quotation marks on the url
-#add and deploy
+#create a repository in github
+#within settings.py
+ALLOWED_HOST = [".vercel.app"]
+#create file called vercel.json
+""""
+{
+    "builds": [
+        {
+            "src": "push/wsgi.py",
+            "use": "@vercel/python",
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "push/wsgi.py"
+        }
+    ]
+}
+
+""""
+#create a requirements.txt file
+pip freeze > requirements.txt
+#in wsgi.py
+app = application
