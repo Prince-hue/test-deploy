@@ -7,3 +7,4 @@ urlpatterns = [
     path("deployy/", views.deployy, name='deployy'),
     
 ]
+
